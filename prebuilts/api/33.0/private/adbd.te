@@ -113,6 +113,10 @@ get_prop(adbd, test_harness_prop)
 # Read persist.adb.tls_server.enable property
 get_prop(adbd, system_adbd_prop)
 
+# Read ro.adb.secure (adb host-authentication flag). Labeled adb_secure_prop so
+# third-party apps cannot read it; adbd (coredomain) reads it to gate auth.
+get_prop(adbd, adb_secure_prop)
+
 # Read device's overlayfs related properties and files
 userdebug_or_eng(`
   get_prop(adbd, persistent_properties_ready_prop)

@@ -769,6 +769,9 @@ set_prop(system_server, smart_idle_maint_enabled_prop)
 get_prop(system_server, device_config_runtime_native_boot_prop)
 get_prop(system_server, device_config_runtime_native_prop)
 
+# AdbService reads ro.adb.secure (adb_secure_prop) for the wireless-debugging path
+get_prop(system_server, adb_secure_prop)
+
 # BootReceiver to read ro.boot.bootreason
 get_prop(system_server, bootloader_boot_reason_prop)
 # PowerManager to read sys.boot.reason
