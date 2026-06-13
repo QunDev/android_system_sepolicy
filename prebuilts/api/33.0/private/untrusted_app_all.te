@@ -157,8 +157,11 @@ dontaudit untrusted_app_all proc_stat:file read;
 dontaudit untrusted_app_all proc_vmstat:file read;
 dontaudit untrusted_app_all proc_uptime:file read;
 
-# tissot: silence the /proc/modules read denial (matches AOSP priv_app/gmscore
-# dontaudit; defeats logcat-based "name=modules" tamper checks).
+# tissot: silence the /proc/modules read denial. AOSP already dontaudits this for
+# priv_app and gmscore_app; untrusted_app was left noisy. Root-detector apps (e.g.
+# com.zhenxi.hunter) read their own logcat and grep `avc: denied ... name="modules"`
+# as a tamper signal. The denial is harmless and identical on stock — silencing it
+# matches stock behaviour so the grep comes up empty.
 dontaudit untrusted_app_all proc_modules:file read;
 
 # Allow the allocation and use of ptys
